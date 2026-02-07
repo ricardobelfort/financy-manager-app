@@ -15,7 +15,7 @@ export const appConfig: ApplicationConfig = {
         options: {
           prefix: 'p',
           darkModeSelector: false,
-          cssLayer: false || 'none',
+          cssLayer: false,
           ripple: true,
         },
       },
