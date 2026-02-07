@@ -1,0 +1,160 @@
+<div class="signup-page">
+  <div class="main-container">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="/logo-icon.svg" alt="Financy icon" class="logo-icon" />
+      <img src="/logo-text.svg" alt="Financy" class="logo-text" />
+    </div>
+
+    <!-- Signup Card -->
+    <div class="signup-card">
+      <!-- Header -->
+      <div class="header">
+        <h1 class="title">Criar conta</h1>
+        <p class="subtitle">Comece a controlar suas finanças ainda hoje</p>
+      </div>
+
+      <!-- Form -->
+      <form class="form" [formGroup]="signupForm" (ngSubmit)="onSignup()">
+        <!-- Inputs -->
+        <div class="inputs">
+          <!-- Full Name Input -->
+          <div class="input-group">
+            <label
+              for="fullName"
+              class="input-label"
+              [class.error]="
+                signupForm.controls.fullName.invalid && signupForm.controls.fullName.touched
+              "
+              >Nome completo</label
+            >
+            <div class="input-wrapper">
+              <i class="pi pi-user input-icon"></i>
+              <input
+                pInputText
+                id="fullName"
+                type="text"
+                formControlName="fullName"
+                placeholder="Seu nome completo"
+                class="input-field"
+                [class.error]="
+                  signupForm.controls.fullName.invalid && signupForm.controls.fullName.touched
+                "
+              />
+            </div>
+            @if (signupForm.controls.fullName.invalid && signupForm.controls.fullName.touched) {
+              @if (signupForm.controls.fullName.errors?.['required']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >O nome é obrigatório</p-message
+                >
+              }
+              @if (signupForm.controls.fullName.errors?.['minlength']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >O nome deve ter no mínimo 3 caracteres</p-message
+                >
+              }
+            }
+          </div>
+
+          <!-- E-mail Input -->
+          <div class="input-group">
+            <label
+              for="email"
+              class="input-label"
+              [class.error]="signupForm.controls.email.invalid && signupForm.controls.email.touched"
+              >E-mail</label
+            >
+            <div class="input-wrapper">
+              <i class="pi pi-envelope input-icon"></i>
+              <input
+                pInputText
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="mail@exemplo.com"
+                class="input-field"
+                [class.error]="
+                  signupForm.controls.email.invalid && signupForm.controls.email.touched
+                "
+              />
+            </div>
+            @if (signupForm.controls.email.invalid && signupForm.controls.email.touched) {
+              @if (signupForm.controls.email.errors?.['required']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >O e-mail é obrigatório</p-message
+                >
+              }
+              @if (signupForm.controls.email.errors?.['email']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Digite um e-mail válido</p-message
+                >
+              }
+            }
+          </div>
+
+          <!-- Password Input -->
+          <div class="input-group">
+            <label
+              for="password"
+              class="input-label"
+              [class.error]="
+                signupForm.controls.password.invalid && signupForm.controls.password.touched
+              "
+              >Senha</label
+            >
+            <div class="password-wrapper">
+              <i class="pi pi-lock password-icon"></i>
+              <p-password
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+                inputId="password"
+                placeholder="Digite sua senha"
+                autocomplete="off"
+                [invalid]="
+                  signupForm.controls.password.invalid && signupForm.controls.password.touched
+                "
+              />
+            </div>
+            @if (signupForm.controls.password.invalid && signupForm.controls.password.touched) {
+              @if (signupForm.controls.password.errors?.['required']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >A senha é obrigatória</p-message
+                >
+              }
+              @if (signupForm.controls.password.errors?.['minlength']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >A senha deve ter no mínimo 8 caracteres</p-message
+                >
+              }
+            }
+            @if (!signupForm.controls.password.touched || signupForm.controls.password.valid) {
+              <p class="helper-text">A senha deve ter no mínimo 8 caracteres</p>
+            }
+          </div>
+        </div>
+
+        <!-- Signup Button -->
+        <p-button type="submit" label="Cadastrar" [fluid]="true" />
+
+        <!-- Divider -->
+        <p-divider align="center" class="divider-component">
+          <span class="divider-text">ou</span>
+        </p-divider>
+
+        <!-- Login Link -->
+        <div class="login-section">
+          <p class="login-text">Já tem uma conta?</p>
+          <p-button
+            type="button"
+            label="Fazer login"
+            icon="pi pi-sign-in"
+            [outlined]="true"
+            [fluid]="true"
+            (onClick)="onNavigateToLogin()"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -20,7 +20,12 @@
         <div class="inputs">
           <!-- E-mail Input -->
           <div class="input-group">
-            <label for="email" class="input-label">E-mail</label>
+            <label
+              for="email"
+              class="input-label"
+              [class.error]="loginForm.controls.email.invalid && loginForm.controls.email.touched"
+              >E-mail</label
+            >
             <div class="input-wrapper">
               <i class="pi pi-envelope input-icon"></i>
               <input
@@ -30,13 +35,33 @@
                 formControlName="email"
                 placeholder="mail@exemplo.com"
                 class="input-field"
+                [class.error]="loginForm.controls.email.invalid && loginForm.controls.email.touched"
               />
             </div>
+            @if (loginForm.controls.email.invalid && loginForm.controls.email.touched) {
+              @if (loginForm.controls.email.errors?.['required']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >O e-mail é obrigatório</p-message
+                >
+              }
+              @if (loginForm.controls.email.errors?.['email']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >Digite um e-mail válido</p-message
+                >
+              }
+            }
           </div>
 
           <!-- Password Input -->
           <div class="input-group">
-            <label for="password" class="input-label">Senha</label>
+            <label
+              for="password"
+              class="input-label"
+              [class.error]="
+                loginForm.controls.password.invalid && loginForm.controls.password.touched
+              "
+              >Senha</label
+            >
             <div class="password-wrapper">
               <i class="pi pi-lock password-icon"></i>
               <p-password
@@ -46,8 +71,23 @@
                 inputId="password"
                 placeholder="Digite sua senha"
                 autocomplete="off"
+                [invalid]="
+                  loginForm.controls.password.invalid && loginForm.controls.password.touched
+                "
               />
             </div>
+            @if (loginForm.controls.password.invalid && loginForm.controls.password.touched) {
+              @if (loginForm.controls.password.errors?.['required']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >A senha é obrigatória</p-message
+                >
+              }
+              @if (loginForm.controls.password.errors?.['minlength']) {
+                <p-message severity="error" size="small" variant="simple"
+                  >A senha deve ter no mínimo 6 caracteres</p-message
+                >
+              }
+            }
           </div>
 
           <!-- Links -->
@@ -56,29 +96,34 @@
               <p-checkbox formControlName="rememberMe" [binary]="true" inputId="remember" />
               <label for="remember" class="checkbox-label">Lembrar-me</label>
             </div>
-            <button type="button" class="link-button" (click)="onRecoverPassword()">
-              Recuperar senha
-            </button>
+            <p-button
+              type="button"
+              label="Recuperar senha"
+              [link]="true"
+              (onClick)="onRecoverPassword()"
+            />
           </div>
         </div>
 
         <!-- Login Button -->
-        <button pButton type="submit" class="btn-primary">Entrar</button>
+        <p-button type="submit" label="Entrar" [fluid]="true" />
 
         <!-- Divider -->
-        <div class="divider">
-          <div class="divider-line"></div>
+        <p-divider align="center" class="divider-component">
           <span class="divider-text">ou</span>
-          <div class="divider-line"></div>
-        </div>
+        </p-divider>
 
         <!-- Sign up -->
         <div class="signup">
           <p class="signup-text">Ainda não tem uma conta?</p>
-          <button pButton type="button" class="btn-secondary" (click)="onCreateAccount()">
-            <i class="pi pi-user-plus"></i>
-            <span>Criar conta</span>
-          </button>
+          <p-button
+            type="button"
+            label="Criar conta"
+            icon="pi pi-user-plus"
+            [outlined]="true"
+            [fluid]="true"
+            (onClick)="onCreateAccount()"
+          />
         </div>
       </form>
     </div>

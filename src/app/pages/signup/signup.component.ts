@@ -3,52 +3,45 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
-import { CheckboxModule } from 'primeng/checkbox';
 import { ButtonModule } from 'primeng/button';
 import { DividerModule } from 'primeng/divider';
 import { MessageModule } from 'primeng/message';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-signup',
   imports: [
     ReactiveFormsModule,
     InputTextModule,
     PasswordModule,
-    CheckboxModule,
     ButtonModule,
     DividerModule,
     MessageModule,
   ],
-  templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  templateUrl: './signup.component.html',
+  styleUrl: './signup.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LoginComponent {
+export class SignupComponent {
   private fb = inject(FormBuilder);
   private router = inject(Router);
 
-  loginForm = this.fb.group({
+  signupForm = this.fb.group({
+    fullName: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    rememberMe: [false],
+    password: ['', [Validators.required, Validators.minLength(8)]],
   });
 
-  onLogin() {
-    if (this.loginForm.valid) {
-      console.log('Login attempt:', this.loginForm.value);
-      // TODO: Implement login logic
+  onSignup() {
+    if (this.signupForm.valid) {
+      console.log('Signup attempt:', this.signupForm.value);
+      // TODO: Implement signup logic
     } else {
       console.log('Form is invalid');
-      this.loginForm.markAllAsTouched();
+      this.signupForm.markAllAsTouched();
     }
   }
 
-  onCreateAccount() {
-    this.router.navigate(['/signup']);
-  }
-
-  onRecoverPassword() {
-    console.log('Navigate to recover password');
-    // TODO: Implement navigation to password recovery
+  onNavigateToLogin() {
+    this.router.navigate(['/login']);
   }
 }
