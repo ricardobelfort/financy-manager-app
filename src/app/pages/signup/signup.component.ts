@@ -34,7 +34,8 @@ export class SignupComponent {
   onSignup() {
     if (this.signupForm.valid) {
       console.log('Signup attempt:', this.signupForm.value);
-      // TODO: Implement signup logic
+      // TODO: Implement signup service
+      this.router.navigate(['/dashboard']);
     } else {
       console.log('Form is invalid');
       this.signupForm.markAllAsTouched();

@@ -1,0 +1,102 @@
+<div class="profile-page">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-content">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="/assets/images/logo.svg" alt="Financy Logo" />
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-links">
+          <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+          <a routerLink="/transactions" class="nav-link">Transações</a>
+          <a routerLink="/categories" class="nav-link">Categorias</a>
+        </div>
+
+        <!-- Profile -->
+        <div class="profile-avatar">
+          <span>CT</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="profile-card">
+      <!-- Header -->
+      <div class="profile-header">
+        <div class="profile-avatar-large">
+          <span>CT</span>
+        </div>
+        <div class="profile-info">
+          <h1 class="profile-name">Conta teste</h1>
+          <p class="profile-email">conta@teste.com</p>
+        </div>
+      </div>
+
+      <!-- Divider -->
+      <div class="divider"></div>
+
+      <!-- Form -->
+      <form [formGroup]="profileForm" (ngSubmit)="onSave()" class="profile-form">
+        <!-- Nome completo -->
+        <div class="input-group">
+          <label for="fullName" class="input-label">Nome completo</label>
+          <div class="input-wrapper">
+            <i class="pi pi-user input-icon"></i>
+            <input
+              pInputText
+              id="fullName"
+              type="text"
+              formControlName="fullName"
+              class="input-field"
+            />
+          </div>
+        </div>
+
+        <!-- E-mail (disabled) -->
+        <div class="input-group">
+          <label for="email" class="input-label">E-mail</label>
+          <div class="input-wrapper disabled">
+            <i class="pi pi-envelope input-icon"></i>
+            <input
+              pInputText
+              id="email"
+              type="email"
+              formControlName="email"
+              class="input-field"
+            />
+          </div>
+          <p class="helper-text">O e-mail não pode ser alterado</p>
+        </div>
+
+        <!-- Actions -->
+        <div class="actions">
+          <button
+            pButton
+            type="submit"
+            [fluid]="true"
+            class="save-button"
+          >
+            Salvar alterações
+          </button>
+
+          <button
+            pButton
+            type="button"
+            [outlined]="true"
+            [fluid]="true"
+            (click)="onLogout()"
+            class="logout-button"
+          >
+            <i class="pi pi-sign-out"></i>
+            <span>Sair da conta</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+</div>

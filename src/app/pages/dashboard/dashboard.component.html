@@ -1,0 +1,131 @@
+<div class="dashboard-page">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-content">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="/assets/images/logo.svg" alt="Financy Logo" />
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-links">
+          <a routerLink="/dashboard" class="nav-link active">Dashboard</a>
+          <a routerLink="/transactions" class="nav-link">Transações</a>
+          <a routerLink="/categories" class="nav-link">Categorias</a>
+        </div>
+
+        <!-- Profile -->
+        <div class="profile-avatar">
+          <span>CT</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <!-- Summary Cards Row -->
+    <div class="summary-cards">
+      <!-- Total Balance Card -->
+      <div class="summary-card">
+        <div class="card-header">
+          <i class="pi pi-wallet"></i>
+          <span class="card-label">SALDO TOTAL</span>
+        </div>
+        <div class="card-value">R$ {{ formatCurrency(totalBalance) }}</div>
+      </div>
+
+      <!-- Monthly Income Card -->
+      <div class="summary-card">
+        <div class="card-header">
+          <i class="pi pi-arrow-circle-up"></i>
+          <span class="card-label">RECEITAS DO MÊS</span>
+        </div>
+        <div class="card-value">R$ {{ formatCurrency(monthlyIncome) }}</div>
+      </div>
+
+      <!-- Monthly Expenses Card -->
+      <div class="summary-card">
+        <div class="card-header">
+          <i class="pi pi-arrow-circle-down"></i>
+          <span class="card-label">DESPESAS DO MÊS</span>
+        </div>
+        <div class="card-value">R$ {{ formatCurrency(monthlyExpenses) }}</div>
+      </div>
+    </div>
+
+    <!-- Bottom Section: Transactions + Categories -->
+    <div class="bottom-section">
+      <!-- Recent Transactions -->
+      <div class="transactions-section">
+        <div class="section-header">
+          <span class="section-title">TRANSAÇÕES RECENTES</span>
+          <a routerLink="/transactions" class="section-link">
+            <span>Ver todas</span>
+            <i class="pi pi-chevron-right"></i>
+          </a>
+        </div>
+
+        <div class="transactions-list">
+          @for (transaction of recentTransactions; track transaction.id) {
+            <div class="transaction-row">
+              <div class="transaction-main">
+                <div class="transaction-icon" [ngClass]="getIconBackgroundClass(transaction.categoryColor)">
+                  <i [class]="'pi pi-' + transaction.icon"></i>
+                </div>
+                <div class="transaction-info">
+                  <div class="transaction-description">{{ transaction.description }}</div>
+                  <div class="transaction-date">{{ transaction.date }}</div>
+                </div>
+              </div>
+
+              <div class="transaction-category">
+                <span class="category-tag" [ngClass]="getCategoryClass(transaction.categoryColor)">
+                  {{ transaction.category }}
+                </span>
+              </div>
+
+              <div class="transaction-amount">
+                <span [class]="transaction.type === 'income' ? 'amount-positive' : 'amount-negative'">
+                  {{ transaction.type === 'income' ? '+' : '-' }} R$ {{ formatCurrency(transaction.amount) }}
+                </span>
+                <i [class]="transaction.type === 'income' ? 'pi pi-arrow-circle-up' : 'pi pi-arrow-circle-down'"></i>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="section-footer">
+          <a routerLink="/transactions/new" class="new-transaction-link">
+            <i class="pi pi-plus"></i>
+            <span>Nova transação</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Categories -->
+      <div class="categories-section">
+        <div class="section-header">
+          <span class="section-title">CATEGORIAS</span>
+          <a routerLink="/categories" class="section-link">
+            <span>Gerenciar</span>
+            <i class="pi pi-chevron-right"></i>
+          </a>
+        </div>
+
+        <div class="categories-list">
+          @for (category of categories; track category.name) {
+            <div class="category-row">
+              <span class="category-tag" [ngClass]="getCategoryClass(category.color)">
+                {{ category.name }}
+              </span>
+              <span class="category-count">{{ category.itemCount }} itens</span>
+              <span class="category-total">R$ {{ formatCurrency(category.total) }}</span>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

@@ -1,0 +1,339 @@
+/* Profile Page */
+.profile-page {
+  background-color: #f8f9fa;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar (reused from dashboard) */
+.navbar {
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+  padding: 16px 48px 17px;
+}
+
+.navbar-container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.navbar-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+}
+
+.nav-links {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.nav-link {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: #4b5563;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.nav-link:hover {
+  color: #1f6f43;
+}
+
+.nav-link.active {
+  font-weight: 600;
+  color: #1f6f43;
+}
+
+.profile-avatar {
+  background-color: #d1d5db;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-avatar span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #111827;
+}
+
+/* Main Content */
+.main-content {
+  padding: 48px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  min-height: 800px;
+}
+
+/* Profile Card */
+.profile-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 33px;
+  width: 448px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Profile Header */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.profile-avatar-large {
+  background-color: #d1d5db;
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.profile-avatar-large span {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 40px;
+  color: #111827;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  text-align: center;
+  width: 100%;
+}
+
+.profile-name {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 28px;
+  color: #111827;
+  margin: 0;
+}
+
+.profile-email {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Divider */
+.divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  width: 100%;
+}
+
+/* Form */
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* Input Groups */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input-label {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 20px;
+  color: #374151;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 15px 13px;
+}
+
+.input-wrapper.disabled {
+  opacity: 0.5;
+}
+
+.input-icon {
+  font-size: 16px;
+  color: #6b7280;
+}
+
+.input-field {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: #111827;
+  background: transparent;
+  padding: 0;
+}
+
+.input-field::placeholder {
+  color: #9ca3af;
+}
+
+.input-field:disabled {
+  color: #000000;
+  cursor: not-allowed;
+}
+
+/* PrimeNG Input Overrides */
+::ng-deep .profile-form .p-inputtext {
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: #111827;
+}
+
+::ng-deep .profile-form .p-inputtext:focus {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+::ng-deep .profile-form .p-inputtext:disabled {
+  color: #000000;
+  background: transparent;
+  opacity: 1;
+}
+
+.helper-text {
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* PrimeNG Button Overrides */
+::ng-deep .save-button.p-button {
+  background: #1f6f43;
+  border: none;
+  height: 48px;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #ffffff;
+  transition: background-color 0.2s;
+}
+
+::ng-deep .save-button.p-button:hover {
+  background: #124b2b;
+}
+
+::ng-deep .logout-button.p-button {
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  height: 48px;
+  border-radius: 8px;
+  padding: 12px 16px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: #374151;
+  transition: background-color 0.2s;
+}
+
+::ng-deep .logout-button.p-button:hover {
+  background: #e5e7eb;
+}
+
+::ng-deep .logout-button.p-button .p-button-icon {
+  font-size: 18px;
+  color: #374151;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 16px 24px;
+  }
+
+  .main-content {
+    padding: 24px;
+  }
+
+  .profile-card {
+    width: 100%;
+    max-width: 448px;
+  }
+
+  .nav-links {
+    position: static;
+    transform: none;
+  }
+
+  .navbar-content {
+    flex-direction: column;
+    gap: 16px;
+  }
+}

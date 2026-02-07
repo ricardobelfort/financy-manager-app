@@ -1,0 +1,142 @@
+<div class="page-container">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-content">
+        <div class="logo">
+          <img src="/assets/images/logo.svg" alt="Financy Logo" />
+        </div>
+
+        <div class="nav-links">
+          <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+          <a routerLink="/transactions" class="nav-link active">Transações</a>
+          <a routerLink="/categories" class="nav-link">Categorias</a>
+        </div>
+
+        <div class="profile-avatar small" routerLink="/profile">
+          <span>CT</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="content-wrapper">
+      <!-- Header -->
+      <div class="page-header">
+        <div class="header-text">
+          <h1 class="page-title">Transações</h1>
+          <p class="page-subtitle">Gerencie todas as suas transações financeiras</p>
+        </div>
+        <button pButton class="new-button">
+          <i class="pi pi-plus"></i>
+          <span>Nova transação</span>
+        </button>
+      </div>
+
+      <!-- Filters -->
+      <div class="filters-section">
+        <div class="filter-item">
+          <span class="filter-label">Buscar</span>
+          <div class="input-wrapper">
+            <i class="pi pi-search"></i>
+            <input type="text" placeholder="Buscar por descrição" />
+          </div>
+        </div>
+        <div class="filter-item">
+          <span class="filter-label">Tipo</span>
+          <div class="input-wrapper">
+            <input type="text" placeholder="Todos" />
+            <i class="pi pi-chevron-down"></i>
+          </div>
+        </div>
+        <div class="filter-item">
+          <span class="filter-label">Categoria</span>
+          <div class="input-wrapper">
+            <input type="text" placeholder="Todas" />
+            <i class="pi pi-chevron-down"></i>
+          </div>
+        </div>
+        <div class="filter-item">
+          <span class="filter-label">Período</span>
+          <div class="input-wrapper">
+            <input type="text" placeholder="Novembro / 2025" />
+            <i class="pi pi-chevron-down"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Transactions Table -->
+      <div class="table-container">
+        <table class="transactions-table">
+          <thead>
+            <tr>
+              <th class="col-description">DESCRIÇÃO</th>
+              <th class="col-date">DATA</th>
+              <th class="col-category">CATEGORIA</th>
+              <th class="col-type">TIPO</th>
+              <th class="col-amount">VALOR</th>
+              <th class="col-actions">AÇÕES</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (transaction of transactions; track transaction.id) {
+              <tr class="transaction-row">
+                <td class="col-description">
+                  <div class="description-cell">
+                    <div class="icon-wrapper" [style.background-color]="transaction.iconColor">
+                      <i class="pi {{ transaction.icon }}"></i>
+                    </div>
+                    <span>{{ transaction.description }}</span>
+                  </div>
+                </td>
+                <td class="col-date">{{ transaction.date }}</td>
+                <td class="col-category">
+                  <span class="category-tag" [ngClass]="getCategoryClass(transaction.category.color)">
+                    {{ transaction.category.name }}
+                  </span>
+                </td>
+                <td class="col-type">
+                  <div class="type-badge" [ngClass]="transaction.type === 'income' ? 'type-income' : 'type-expense'">
+                    <i class="pi" [ngClass]="transaction.type === 'income' ? 'pi-arrow-up' : 'pi-arrow-down'"></i>
+                    <span>{{ transaction.type === 'income' ? 'Entrada' : 'Saída' }}</span>
+                  </div>
+                </td>
+                <td class="col-amount">{{ formatCurrency(transaction.amount) }}</td>
+                <td class="col-actions">
+                  <div class="action-buttons">
+                    <button pButton class="action-btn">
+                      <i class="pi pi-trash"></i>
+                    </button>
+                    <button pButton class="action-btn">
+                      <i class="pi pi-pencil"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        <!-- Footer -->
+        <div class="table-footer">
+          <div class="results-info">
+            <span><strong>1</strong> a <strong>10</strong> | <strong>27</strong> resultados</span>
+          </div>
+          <div class="pagination">
+            <button pButton class="pagination-btn disabled">
+              <i class="pi pi-chevron-left"></i>
+            </button>
+            <button pButton class="pagination-btn active">1</button>
+            <button pButton class="pagination-btn">2</button>
+            <button pButton class="pagination-btn">3</button>
+            <button pButton class="pagination-btn">
+              <i class="pi pi-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

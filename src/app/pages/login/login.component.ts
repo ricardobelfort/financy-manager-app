@@ -36,7 +36,8 @@ export class LoginComponent {
   onLogin() {
     if (this.loginForm.valid) {
       console.log('Login attempt:', this.loginForm.value);
-      // TODO: Implement login logic
+      // TODO: Implement authentication service
+      this.router.navigate(['/dashboard']);
     } else {
       console.log('Form is invalid');
       this.loginForm.markAllAsTouched();

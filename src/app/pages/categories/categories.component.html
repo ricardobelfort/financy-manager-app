@@ -1,0 +1,101 @@
+<div class="page-container">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="navbar-content">
+        <div class="logo">
+          <img src="/assets/images/logo.svg" alt="Financy Logo" />
+        </div>
+
+        <div class="nav-links">
+          <a routerLink="/dashboard" class="nav-link">Dashboard</a>
+          <a routerLink="/transactions" class="nav-link">Transações</a>
+          <a routerLink="/categories" class="nav-link active">Categorias</a>
+        </div>
+
+        <div class="profile-avatar small" routerLink="/profile">
+          <span>CT</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="content-wrapper">
+      <!-- Header -->
+      <div class="page-header">
+        <div class="header-text">
+          <h1 class="page-title">Categorias</h1>
+          <p class="page-subtitle">Organize suas transações por categorias</p>
+        </div>
+        <button pButton class="new-button">
+          <i class="pi pi-plus"></i>
+          <span>Nova categoria</span>
+        </button>
+      </div>
+
+      <!-- Summary Cards -->
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="card-icon">
+            <i class="pi pi-tag"></i>
+          </div>
+          <div class="card-text">
+            <h2 class="card-value">{{ totalCategories }}</h2>
+            <p class="card-label">total de categorias</p>
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="card-icon">
+            <i class="pi pi-arrows-v"></i>
+          </div>
+          <div class="card-text">
+            <h2 class="card-value">{{ totalTransactions }}</h2>
+            <p class="card-label">total de transações</p>
+          </div>
+        </div>
+        <div class="summary-card">
+          <div class="card-icon">
+            <i class="pi pi-utensils"></i>
+          </div>
+          <div class="card-text">
+            <h2 class="card-value">{{ mostUsedCategory }}</h2>
+            <p class="card-label">categoria mais utilizada</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Categories Grid -->
+      <div class="categories-grid">
+        @for (category of categories; track category.id) {
+          <div class="category-card">
+            <div class="card-header">
+              <div class="category-icon" [style.background-color]="category.color">
+                <i class="pi {{ category.icon }}"></i>
+              </div>
+              <div class="card-actions">
+                <button pButton class="action-btn">
+                  <i class="pi pi-trash"></i>
+                </button>
+                <button pButton class="action-btn">
+                  <i class="pi pi-pencil"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-content">
+              <h3 class="category-name">{{ category.name }}</h3>
+              <p class="category-description">{{ category.description }}</p>
+            </div>
+            <div class="card-footer">
+              <span class="category-tag" [ngClass]="getTagClass(category.tagColor)">
+                {{ category.name }}
+              </span>
+              <span class="item-count">{{ category.itemCount }} {{ category.itemCount === 1 ? 'item' : 'itens' }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </main>
+</div>
