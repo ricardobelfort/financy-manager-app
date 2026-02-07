@@ -93,13 +93,22 @@
                 </td>
                 <td class="col-date">{{ transaction.date }}</td>
                 <td class="col-category">
-                  <span class="category-tag" [ngClass]="getCategoryClass(transaction.category.color)">
+                  <span
+                    class="category-tag"
+                    [ngClass]="getCategoryClass(transaction.category.color)"
+                  >
                     {{ transaction.category.name }}
                   </span>
                 </td>
                 <td class="col-type">
-                  <div class="type-badge" [ngClass]="transaction.type === 'income' ? 'type-income' : 'type-expense'">
-                    <i class="pi" [ngClass]="transaction.type === 'income' ? 'pi-arrow-up' : 'pi-arrow-down'"></i>
+                  <div
+                    class="type-badge"
+                    [ngClass]="transaction.type === 'income' ? 'type-income' : 'type-expense'"
+                  >
+                    <i
+                      class="pi"
+                      [ngClass]="transaction.type === 'income' ? 'pi-arrow-up' : 'pi-arrow-down'"
+                    ></i>
                     <span>{{ transaction.type === 'income' ? 'Entrada' : 'Saída' }}</span>
                   </div>
                 </td>

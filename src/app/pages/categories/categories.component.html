@@ -91,7 +91,9 @@
               <span class="category-tag" [ngClass]="getTagClass(category.tagColor)">
                 {{ category.name }}
               </span>
-              <span class="item-count">{{ category.itemCount }} {{ category.itemCount === 1 ? 'item' : 'itens' }}</span>
+              <span class="item-count"
+                >{{ category.itemCount }} {{ category.itemCount === 1 ? 'item' : 'itens' }}</span
+              >
             </div>
           </div>
         }

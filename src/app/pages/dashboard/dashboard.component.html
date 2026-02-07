@@ -71,7 +71,10 @@
           @for (transaction of recentTransactions; track transaction.id) {
             <div class="transaction-row">
               <div class="transaction-main">
-                <div class="transaction-icon" [ngClass]="getIconBackgroundClass(transaction.categoryColor)">
+                <div
+                  class="transaction-icon"
+                  [ngClass]="getIconBackgroundClass(transaction.categoryColor)"
+                >
                   <i [class]="'pi pi-' + transaction.icon"></i>
                 </div>
                 <div class="transaction-info">
@@ -87,10 +90,19 @@
               </div>
 
               <div class="transaction-amount">
-                <span [class]="transaction.type === 'income' ? 'amount-positive' : 'amount-negative'">
-                  {{ transaction.type === 'income' ? '+' : '-' }} R$ {{ formatCurrency(transaction.amount) }}
+                <span
+                  [class]="transaction.type === 'income' ? 'amount-positive' : 'amount-negative'"
+                >
+                  {{ transaction.type === 'income' ? '+' : '-' }} R$
+                  {{ formatCurrency(transaction.amount) }}
                 </span>
-                <i [class]="transaction.type === 'income' ? 'pi pi-arrow-circle-up' : 'pi pi-arrow-circle-down'"></i>
+                <i
+                  [class]="
+                    transaction.type === 'income'
+                      ? 'pi pi-arrow-circle-up'
+                      : 'pi pi-arrow-circle-down'
+                  "
+                ></i>
               </div>
             </div>
           }
