@@ -16,9 +16,9 @@ export const appConfig: ApplicationConfig = {
           prefix: 'p',
           darkModeSelector: false,
           cssLayer: false,
-          ripple: true,
         },
       },
+      ripple: true,
     }),
   ],
 };

@@ -1,0 +1,86 @@
+<div class="login-page">
+  <div class="main-container">
+    <!-- Logo -->
+    <div class="logo">
+      <img src="/logo-icon.svg" alt="Financy icon" class="logo-icon" />
+      <img src="/logo-text.svg" alt="Financy" class="logo-text" />
+    </div>
+
+    <!-- Login Card -->
+    <div class="login-card">
+      <!-- Header -->
+      <div class="header">
+        <h1 class="title">Fazer login</h1>
+        <p class="subtitle">Entre na sua conta para continuar</p>
+      </div>
+
+      <!-- Form -->
+      <form class="form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <!-- Inputs -->
+        <div class="inputs">
+          <!-- E-mail Input -->
+          <div class="input-group">
+            <label for="email" class="input-label">E-mail</label>
+            <div class="input-wrapper">
+              <i class="pi pi-envelope input-icon"></i>
+              <input
+                pInputText
+                id="email"
+                type="email"
+                formControlName="email"
+                placeholder="mail@exemplo.com"
+                class="input-field"
+              />
+            </div>
+          </div>
+
+          <!-- Password Input -->
+          <div class="input-group">
+            <label for="password" class="input-label">Senha</label>
+            <div class="password-wrapper">
+              <i class="pi pi-lock password-icon"></i>
+              <p-password
+                formControlName="password"
+                [toggleMask]="true"
+                [feedback]="false"
+                inputId="password"
+                placeholder="Digite sua senha"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+          <!-- Links -->
+          <div class="links">
+            <div class="checkbox-group">
+              <p-checkbox formControlName="rememberMe" [binary]="true" inputId="remember" />
+              <label for="remember" class="checkbox-label">Lembrar-me</label>
+            </div>
+            <button type="button" class="link-button" (click)="onRecoverPassword()">
+              Recuperar senha
+            </button>
+          </div>
+        </div>
+
+        <!-- Login Button -->
+        <button pButton type="submit" class="btn-primary">Entrar</button>
+
+        <!-- Divider -->
+        <div class="divider">
+          <div class="divider-line"></div>
+          <span class="divider-text">ou</span>
+          <div class="divider-line"></div>
+        </div>
+
+        <!-- Sign up -->
+        <div class="signup">
+          <p class="signup-text">Ainda não tem uma conta?</p>
+          <button pButton type="button" class="btn-secondary" (click)="onCreateAccount()">
+            <i class="pi pi-user-plus"></i>
+            <span>Criar conta</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

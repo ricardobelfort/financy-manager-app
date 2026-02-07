@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FilterMatchMode } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
@@ -11,12 +11,8 @@ import { PrimeNG } from 'primeng/config';
   styleUrl: './app.css',
 })
 export class App implements OnInit {
-  protected readonly title = signal('financy-manager');
-
   private primeng = inject(PrimeNG);
   private primengConfig = inject(PrimeNG);
-
-  loading = signal(false);
 
   ngOnInit() {
     this.primeng.ripple.set(true);
@@ -52,13 +48,5 @@ export class App implements OnInit {
         FilterMatchMode.DATE_AFTER,
       ],
     };
-  }
-
-  load() {
-    this.loading.set(true);
-
-    setTimeout(() => {
-      this.loading.set(false);
-    }, 2000);
   }
 }
